@@ -11,5 +11,8 @@ export class CategoryListComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  alert(valor: string):void {
+    alert(valor);
+  }
 
 }
