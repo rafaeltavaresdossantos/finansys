@@ -50,7 +50,7 @@
             <div class="input-group-prepend">
               <div class="input-group-text">R$</div>
             </div>
-            <input [imask]="imaskConfig" type="text" class="form-control text-right" id="amount" formControlamount="amount">
+            <input [imask]="imaskConfig" type="text" class="form-control text-right" id="amount" formControlName="amount">
           </div>
 
           <div class="text-danger" *ngIf="entryForm.get('amount')?.invalid && entryForm.get('amount')?.touched">
@@ -64,8 +64,9 @@
            formControlName="date"
            inputStyleClass="form-control"
            dataType="string"
-           dateFormat="dd/mm/yyyy"
+           dateFormat="dd/mm/yy"
            [locale]="ptBr"
+           [showButtonBar]="true"
           ></p-calendar>
           <div class="text-danger" *ngIf="entryForm.get('date')?.invalid && entryForm.get('date')?.touched">
             <div *ngIf="entryForm.get('date')?.errors?.['required']">dado obrigatório.</div>
