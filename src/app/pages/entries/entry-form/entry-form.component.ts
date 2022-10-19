@@ -5,6 +5,9 @@ import { switchMap } from 'rxjs';
 import { Entry } from '../shared/entry.model';
 import { EntryService } from '../shared/entry.service';
 import * as toaster from 'toastr';
+import { PrimeNGConfig } from 'primeng/api'
+import { Category } from '../../categories/shared/category.model';
+import { CategoryService } from '../../categories/shared/category.service';
 
 @Component({
   selector: 'app-Entry-form',
@@ -24,18 +27,46 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
   submittingForm: boolean = false;
   entry: Entry = new Entry();
 
+  imaskConfig = {
+    mask: Number,
+    scale: 2,
+    thousandsSeparator: '.',
+    padFractionalZeros: true,
+    normalizeZeros: true,
+    radix: ','
+  }
+
+  optionTypes = [{value: 'revenue', text: 'Receita'}, {value: 'expense', text: 'Despesa'}];
+  categories: Category[] = [];
+
+
+    ptBr = {
+    firstDayOfWeek: 0,
+    dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+    dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+    dayNamesMin: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+    monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho',
+      'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+    monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+    today: 'Hoje',
+    clear: 'Limpar'
+  };
 
   constructor(
     private entryservice: EntryService,
+    private categoryService: CategoryService,
     private route: ActivatedRoute,
     private router: Router,
     private formBuilder: FormBuilder,
+    private primeNgConfig: PrimeNGConfig
   ) { }
 
   ngOnInit(): void {
     this.setCurrentAction();
     this.buildEntryForm();
     this.loadEntry();
+    this.setLangBr();
+    this.loadCategories();
   }
 
   ngAfterContentChecked(): void {
@@ -52,7 +83,10 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
     }
   }
 
+
+
   // Private
+
   private setCurrentAction(){
     if(this.route.snapshot.url[0].path == 'new') {
       this.currencyAction = 'new'
@@ -66,10 +100,10 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
       id:[null],
       name:[null, [Validators.required, Validators.minLength(2)]],
       description:[null],
-      type:[null, [Validators.required]],
+      type:['expense', [Validators.required]],
       amount:[null, [Validators.required]],
       date:[null, [Validators.required]],
-      paid:[null, [Validators.required]],
+      paid:[true, [Validators.required]],
       categoryId:[null, [Validators.required]],
     })
   }
@@ -127,6 +161,17 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
     }else {
       this.serverErrorMessages = ['falha na comunicação com o servidor, por favor tente mais tarde!'];
     }
+  }
+
+  private setLangBr(){
+    this.primeNgConfig.setTranslation(this.ptBr);
+  }
+
+  private loadCategories(){
+    this.categoryService.getAll().subscribe(
+      categories => this.categories = categories,
+      erro => console.log(erro)
+    )
   }
 
 }
