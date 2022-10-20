@@ -1,5 +1,5 @@
-import { BaseResourceModel } from "src/app/shared/models/base-resource.model";
-import { Category } from "../../categories/shared/category.model";
+import { BaseResourceModel } from 'src/app/shared/models/base-resource.model';
+import { Category } from '../../categories/shared/category.model';
 
 export class Entry extends BaseResourceModel {
   constructor(
@@ -12,11 +12,13 @@ export class Entry extends BaseResourceModel {
     public paid?: boolean,
     public categoryId?: number,
     public category?: Category
-  ){super()}
+  ) {
+    super();
+  }
   static types = {
     expense: 'Despesa',
-    revenue: 'Receita'
-  }
+    revenue: 'Receita',
+  };
 
   get paidText(): string {
     return this.paid ? 'Pago' : 'Pendente';
