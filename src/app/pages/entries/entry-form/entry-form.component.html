@@ -13,7 +13,9 @@
     </h1>
   </div>
   <div class="col-md-3">
-    <a routerLink="/entries" class="btn btn-light float-right"> << Voltar</a>
+    <a routerLink="/entries" class="btn btn-secondary float-right">
+      <i class="fa-solid fa-circle-arrow-left"></i>
+       Voltar</a>
   </div>
 </div>
 
@@ -112,7 +114,10 @@
     </ul>
   </div>
 
-  <button [disabled]="submittingForm || resourceForm.invalid" type="submit" class="btn btn-primary btn-log float-right mt-3">Salvar</button>
+  <button [disabled]="submittingForm || resourceForm.invalid" type="submit" class="btn btn-primary btn-log float-right mt-3">
+    <i class="fa-solid fa-floppy-disk"></i>
+    Salvar
+  </button>
 
 </form>
 

@@ -12,7 +12,9 @@
     </h1>
   </div>
   <div class="col-md">
-    <a routerLink="new" class="btn btn-success float-right"> +Nova Lançamento</a>
+    <a routerLink="new" class="btn btn-success float-right">
+      <i class="fa-sharp fa-solid fa-file-circle-plus"></i>
+      Novo Lançamento</a>
   </div>
 </div>
 
@@ -26,7 +28,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let entry of entries; let i = index">
+    <tr *ngFor="let entry of resources">
       <td>
         <strong>{{entry.name}}</strong><br>
         <small class="text-success">{{entry.date}}</small><br>
@@ -42,9 +44,16 @@
           <span class="badge badge-light">{{entry.paidText}}</span>
         </td>
         <td class="text-center">
-        <a [routerLink]="[entry.id, 'edit']" class="btn btn-outline-info btn-sm mr-2">Editar</a>
-        <button (click)="deleteEntry(entry, i)" class="btn btn-outline-danger btn-sm">Excluir</button>
+        <a [routerLink]="[entry.id, 'edit']" class="btn btn-outline-info btn-sm mr-2">
+          <i class="fa-solid fa-pencil"></i>
+          Editar
+        </a>
+        <button (click)="deleteResource(entry)" class="btn btn-outline-danger btn-sm">
+          <i class="fa-sharp fa-solid fa-trash"></i>
+          Excluir
+        </button>
       </td>
     </tr>
   </tbody>
 </table>
+
