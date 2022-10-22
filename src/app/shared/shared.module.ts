@@ -4,11 +4,14 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { IMaskModule } from 'angular-imask';
 import { BreadCrumbComponent } from './components/bread-crumb/bread-crumb.component';
 import { RouterModule } from '@angular/router';
+import { PageHeaderComponent } from './components/page-header/page-header.component';
+
 
 
 @NgModule({
   declarations: [
-    BreadCrumbComponent
+    BreadCrumbComponent,
+    PageHeaderComponent
   ],
   imports: [
     CommonModule,
@@ -22,7 +25,8 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     IMaskModule,
     BreadCrumbComponent,
-    RouterModule
+    RouterModule,
+    PageHeaderComponent
   ]
 })
 export class SharedModule { }
