@@ -5,19 +5,24 @@ import { IMaskModule } from 'angular-imask';
 import { BreadCrumbComponent } from './components/bread-crumb/bread-crumb.component';
 import { RouterModule } from '@angular/router';
 import { PageHeaderComponent } from './components/page-header/page-header.component';
+import { FormFieldErrorComponent } from './components/form-field-error/form-field-error.component';
+import { FormControlPipe } from './pipes/form-control.pipe';
 
 
 
 @NgModule({
   declarations: [
     BreadCrumbComponent,
-    PageHeaderComponent
+    PageHeaderComponent,
+    FormFieldErrorComponent,
+    FormControlPipe
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     IMaskModule,
-    RouterModule
+    RouterModule,
+
 
   ],
   exports:[
@@ -26,7 +31,9 @@ import { PageHeaderComponent } from './components/page-header/page-header.compon
     IMaskModule,
     BreadCrumbComponent,
     RouterModule,
-    PageHeaderComponent
+    PageHeaderComponent,
+    FormFieldErrorComponent,
+    FormControlPipe
   ]
 })
 export class SharedModule { }
