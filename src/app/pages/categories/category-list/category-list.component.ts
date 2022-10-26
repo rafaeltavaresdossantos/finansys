@@ -13,4 +13,5 @@ export class CategoryListComponent extends BaseResourceListComponent<Category> {
   constructor(protected categoryService: CategoryService) {
     super(categoryService);
   }
+
 }

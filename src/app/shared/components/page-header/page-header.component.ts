@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-page-header',
@@ -13,9 +14,19 @@ export class PageHeaderComponent implements OnInit {
   @Input() classBtn: string = '';
   @Input() classIcon: string = '';
 
-  constructor() { }
+
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+
+  }
+
+  actionBtn(){
+    const url = this.router.url.match(/\d/g);
+    const id = url!.join("");
+    return this.link == 'new' ? 'new' : `/expense/${id}/${this.link}`;
   }
 
 }

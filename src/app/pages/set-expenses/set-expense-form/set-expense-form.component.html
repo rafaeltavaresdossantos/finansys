@@ -1,0 +1,54 @@
+<app-bread-crumb
+[items]="[{text: 'Cenários', link:'/set-expenses'}, {text: pageTitle}]"
+></app-bread-crumb>
+<app-page-header
+  [title]="pageTitle"
+  link="/set-expenses"
+  classBtn="btn-light"
+  classIcon="fa-solid fa-circle-arrow-left"
+  nameButton="Voltar"
+></app-page-header>
+<form [formGroup]="resourceForm" (submit)="submitForm()">
+  <div class="card">
+    <div class="card-header">
+      Informações sobre o cenário
+    </div>
+    <div class="card-body">
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="name">Nome</label>
+          <input type="text" class="form-control" id="name" formControlName="name">
+          <app-form-field-error
+          [form-control]="resourceForm.get('name')! | formControl"
+          ></app-form-field-error>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="cpfCnpj">CPF / CNPJ</label>
+          <input type="text" class="form-control" id="cpfCnpj" formControlName="cpfCnpj">
+          <app-form-field-error
+          [form-control]="resourceForm.get('cpfCnpj')! | formControl"
+          ></app-form-field-error>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="description">Descrição</label>
+          <input type="text" class="form-control" id="description" formControlName="description">
+          <app-form-field-error
+          [form-control]="resourceForm.get('description')! | formControl"
+          ></app-form-field-error>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert alert-danger mt-3" *ngIf="serverErrorMessages">
+    <strong>Erro no servidor:</strong>
+    <ul>
+      <li *ngFor="let error of serverErrorMessages">{{error}}</li>
+    </ul>
+  </div>
+
+  <button [disabled]="submittingForm || resourceForm.invalid" type="submit" class="btn btn-primary btn-log float-right mt-3">Salvar</button>
+
+</form>
+
+<pre>{{resourceForm.value | json}}</pre>

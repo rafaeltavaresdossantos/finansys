@@ -1,9 +1,16 @@
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 import { Category } from './pages/categories/shared/category.model';
 import { Entry } from './pages/entries/shared/entry.model';
+import { SetExpense } from './pages/set-expenses/shared/set-expenses.model';
 
 export class InMemoryDatabase implements InMemoryDbService {
   createDb() {
+
+    const setExpenses: SetExpense[] = [
+      { id: 1, name: 'Karina Borges', cpfCnpj:'452.062.058-93', description: 'Controle Financeiro' },
+      { id: 2, name: 'Rafael Tavares', cpfCnpj:'387.989.038-29', description: 'Controle Financeiro' },
+    ];
+
     const categories: Category[] = [
       { id: 1, name: 'Moradia', description: 'Pagamentos de contas da Casa' },
       { id: 2, name: 'Saúde', description: 'Plano de saúde e Remédios' },
@@ -115,6 +122,6 @@ export class InMemoryDatabase implements InMemoryDbService {
       } as Entry,
     ];
 
-    return { categories, entries };
+    return { categories, entries, setExpenses };
   }
 }

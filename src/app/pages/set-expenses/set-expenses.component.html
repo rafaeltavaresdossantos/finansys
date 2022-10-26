@@ -1,0 +1,26 @@
+<div class="row">
+  <div *ngFor="let cenario of resources" class="card text-center text-white bg-info col-md-3 mr-3 mb-4 expend" [routerLink]="['/expense', cenario.id, 'reports']">
+    <div class="card-header">
+      {{cenario.name}}
+    </div>
+    <div class="card-body">
+      <h3 class="card-title">
+        CPF/CNPJ:
+      </h3>
+      <h4>{{cenario.cpfCnpj}}</h4>
+      <span>{{cenario.description}}</span>
+    </div>
+  </div>
+  <div [routerLink]="['new']" class="card text-center text-white bg-info col-md-3 mr-3 mb-4 expend">
+    <div class="card-header">
+      Criar Cenário
+    </div>
+    <div class="card-body">
+      <h3 class="card-title">
+        +
+      </h3>
+    </div>
+  </div>
+</div>
+
+
